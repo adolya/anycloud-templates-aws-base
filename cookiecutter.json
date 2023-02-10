@@ -1,0 +1,10 @@
+{
+  "app_name": "Enter your project name",
+  "account_number": "Enter your account number",
+  "admin_name": "Enter admin login",
+  "AWS_ACCESS_KEY_ID": "Enter your key Id",
+  "AWS_SECRET_ACCESS_KEY": "Enter your root account key",
+  "AWS_REGION": "us-east-1",
+  "app_git_repo": "Enter output git repo",
+  "__project_name": "{{ cookiecutter.app_name|lower|replace(' ', '-') }}"
+}
