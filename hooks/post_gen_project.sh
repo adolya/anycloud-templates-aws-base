@@ -10,7 +10,7 @@ terraform init
 terraform apply --auto-approve
 mv main_tf main.tf
 terraform init
-echo '**** Commiting code to repository: {{ cookiecutter.app_git_repo }})
+echo '**** Commiting code to repository: {{ cookiecutter.app_git_repo }})'
 git init
 git add .
 git commit -m "initial commit"
