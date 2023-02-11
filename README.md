@@ -33,4 +33,4 @@ admin_user with admin_user_password
 
 # IMPORTANT
 After account infrastructure defined as code. Go to AWS console security credentials and deactivate/delete access key we used at the begining<br>
-Also eneable Two Factor Authentication for your root account. And use the admin_user, for your future needs.
+Also enable Two Factor Authentication for your root account. And use the admin_user, for your future needs.
