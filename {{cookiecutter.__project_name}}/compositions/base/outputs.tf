@@ -1,5 +1,5 @@
 output "base_users" {
-  value = module.users
+  value = module.iam.users
 }
 
 output "tf_state_group" {

@@ -9,3 +9,7 @@ variable "bucket_name" {
 variable "key_path" {
   type = string
 }
+
+variable "account_number" {
+  type = string
+}

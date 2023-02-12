@@ -14,9 +14,13 @@ data "aws_iam_policy_document" "tf_state_dynamodb" {
     actions = [
       "dynamodb:GetItem",
       "dynamodb:PutItem",
-      "dynamodb:DeleteItem"
+      "dynamodb:DeleteItem",
+      "dynamodb:DescribeTable",
+      "dynamodb:DescribeContinuousBackups",
+      "dynamodb:DescribeTimeToLive",
+      "dynamodb:ListTagsOfResource"
     ]
-    resources = ["arn:aws:dynamodb:*:*:table/${var.table_name}"]
+    resources = ["arn:aws:dynamodb:*:${var.account_number}:table/${var.table_name}"]
     effect    = "Allow"
   }
 }

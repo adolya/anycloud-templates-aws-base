@@ -12,7 +12,7 @@ resource "aws_s3_bucket_versioning" "tf_state_s3_versioning" {
   }
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "tf_state_s3_encryttion" {
+resource "aws_s3_bucket_server_side_encryption_configuration" "tf_state_s3_encryption" {
   bucket = aws_s3_bucket.tf_state_s3.bucket
 
   rule {
@@ -28,9 +28,33 @@ data "aws_iam_policy_document" "tf_state_s3" {
     actions   = ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"]
     resources = ["arn:aws:s3:::${var.bucket_name}/${var.key_path}"]
     effect    = "Allow"
+    sid       = "OfficialBucketObjectActions"
   }
   statement {
     actions   = ["s3:ListBucket"]
+    resources = ["arn:aws:s3:::${var.bucket_name}"]
+    effect    = "Allow"
+    sid       = "OfficialBucketActions"
+  }
+  # List of action not from official documentation. TOBE checked WHY it is required
+  statement {
+    actions = [
+      "s3:GetLifecycleConfiguration",
+      "s3:GetBucketTagging",
+      "s3:GetBucketWebsite",
+      "s3:GetBucketLogging",
+      "s3:ListBucket",
+      "s3:GetAccelerateConfiguration",
+      "s3:GetBucketVersioning",
+      "s3:GetBucketAcl",
+      "s3:GetBucketPolicy",
+      "s3:GetReplicationConfiguration",
+      "s3:GetBucketObjectLockConfiguration",
+      "s3:GetEncryptionConfiguration",
+      "s3:GetBucketRequestPayment",
+      "s3:GetBucketCORS",
+      "s3:GetBucketLocation"
+    ]
     resources = ["arn:aws:s3:::${var.bucket_name}"]
     effect    = "Allow"
   }
