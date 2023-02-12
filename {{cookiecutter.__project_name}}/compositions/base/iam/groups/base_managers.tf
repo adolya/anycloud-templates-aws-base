@@ -31,30 +31,19 @@ data "aws_iam_policy_document" "base_group" {
   statement {
     actions = [
       "iam:GetGroup",
-      "iam:GetGroupPolicy",
-      "iam:DeleteGroupPolicy",
-      "iam:RemoveUserFromGroup",
+      "iam:PutGroup",
       "iam:CreateGroup",
       "iam:DeleteGroup",
+      "iam:GetGroupPolicy",
+      "iam:PutGroupPolicy",
+      "iam:DeleteGroupPolicy",
+      "iam:RemoveUserFromGroup",
+      "iam:AttachGroupPolicy",
+      "iam:DetachGroupPolicy",
       "iam:ListAttachedGroupPolicies"
     ]
     resources = [
-      "arn:aws:iam::${var.account_number}:group/${aws_iam_group.base_managers.name}"
-    ]
-    effect = "Allow"
-  }
-  statement {
-    actions = [
-      "iam:GetGroup",
-      "iam:GetGroupPolicy",
-      "iam:ListAttachedGroupPolicies",
-      "iam:DetachGroupPolicy",
-      "iam:PutGroupPolicy",
-      "iam:RemoveUserFromGroup",
-      "iam:DeleteGroupPolicy"
-    ]
-    resources = [
-      "arn:aws:iam::${var.account_number}:group/${var.tf_state_managers}"
+      "arn:aws:iam::${var.account_number}:group/*"
     ]
     effect = "Allow"
   }
@@ -114,5 +103,5 @@ data "aws_iam_policy_document" "base_dynamo" {
 
 resource "aws_iam_group_policy_attachment" "base_s3" {
   group      = aws_iam_group.base_managers.name
-  policy_arn = var.standard_policies.s3_full_access.arn
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
 }

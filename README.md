@@ -1,4 +1,4 @@
-# AnyCloud
+# Cloud as Code Templates
 
 [![Terraform](https://img.shields.io/badge/Terraform-1.3.7-green)](https://www.terraform.io/)
 [![Terraform](https://img.shields.io/badge/Cookiecutter-2.1.1-green)](https://www.terraform.io/)
@@ -13,7 +13,7 @@ Under account name in AWS console go to security credentials and create access k
 
 ## Generate
 ```console
-cookiecutter git@github.com:adolya/anycloud-template-base.git
+cookiecutter git@github.com:adolya/cact-template-base.git
 ```
 Confirm to switch local state to S3 for further automation
 

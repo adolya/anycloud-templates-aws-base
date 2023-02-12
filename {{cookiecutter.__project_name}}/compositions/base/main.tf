@@ -1,7 +1,3 @@
-module "policies" {
-  source = "./iam/policies"
-}
-
 module "users" {
   source = "./iam/users"
   github_user_groups = [
@@ -9,7 +5,6 @@ module "users" {
     module.groups.base_managers.name
   ]
   admin_user_name  = var.admin_user_name
-  admin_policy_arn = module.policies.standard_policies.admin_full_access.arn
 }
 
 module "groups" {
@@ -19,7 +14,6 @@ module "groups" {
   bucket_name       = var.bucket_name
   key_path          = var.key_path
   tf_state_managers = module.tf_state.tf_state_group.name
-  standard_policies = module.policies.standard_policies
 }
 
 module "tf_state" {

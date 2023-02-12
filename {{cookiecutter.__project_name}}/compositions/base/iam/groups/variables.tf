@@ -17,7 +17,3 @@ variable "key_path" {
 variable "tf_state_managers" {
   type = string
 }
-
-variable "standard_policies" {
-  type = map
-}
