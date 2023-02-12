@@ -21,15 +21,16 @@ Open terraform.tfstate and search for
 ```console
 "outputs": {
     "base_info": {
+        "value": {
 ```
 
 ## Enable repository versioning
 Instruction can be found [here](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#configuring-the-default-github_token-permissions)
 ## Create secrets in your repository settings:
 AWS_ACCESS_KEY_ID <br>
-with value from tfstate output: github_AWS_ACCESS_KEY_ID<br>
+with value from tfstate output: github/base: AWS_ACCESS_KEY_ID<br>
 AWS_SECRET_ACCESS_KEY<br>
-with value from tfstate output: github_AWS_SECRET_ACCESS_KEY<br>
+with value from tfstate output: github/base: AWS_SECRET_ACCESS_KEY<br>
 ## To access AWS console use:
 admin_user with admin_user_password
 
