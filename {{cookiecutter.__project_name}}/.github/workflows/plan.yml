@@ -12,7 +12,7 @@ env:
   AWS_REGION: {{ cookiecutter.AWS_REGION }}
 
 jobs:
-  terraform_plan:
+  build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -32,3 +32,18 @@ jobs:
     - name: Create Plan
       id: plan
       run: terraform plan -no-color
+
+  bump:
+    name: Bump Version
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
+          WITH_V: false

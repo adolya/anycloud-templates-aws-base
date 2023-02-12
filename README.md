@@ -23,6 +23,8 @@ Open terraform.tfstate and search for
     "base_info": {
 ```
 
+## Enable repository versioning
+Instruction can be found [here](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#configuring-the-default-github_token-permissions)
 ## Create secrets in your repository settings:
 AWS_ACCESS_KEY_ID <br>
 with value from tfstate output: github_AWS_ACCESS_KEY_ID<br>
