@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
     region         = "{{ cookiecutter.AWS_REGION }}"
-    bucket         = "terraform-state-{{cookiecutter.__project_name}}-base"
-    key            = "base.tfstate"
-    dynamodb_table = "terraform-{{cookiecutter.__project_name}}-locks"
+    bucket         = "{{ cookiecutter.__bucket_name}}"
+    key            = "states/base.tfstate"
+    dynamodb_table = "{{ cookiecutter.__dynamo_table_name}}"
     encrypt        = true
   }
 }

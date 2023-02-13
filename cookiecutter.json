@@ -6,5 +6,7 @@
   "AWS_SECRET_ACCESS_KEY": "Enter your root account key",
   "AWS_REGION": "us-east-1",
   "app_git_repo": "Enter output git repo",
-  "__project_name": "{{ cookiecutter.app_name|lower|replace(' ', '-') }}"
+  "__project_name": "{{ cookiecutter.app_name|lower|replace(' ', '-') }}",
+  "__bucket_name": "terraform-{{cookiecutter.__project_name}}",
+  "__dynamo_table_name": "terraform-{{cookiecutter.__project_name}}-locks"
 }

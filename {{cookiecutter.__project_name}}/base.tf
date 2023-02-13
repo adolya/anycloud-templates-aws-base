@@ -5,9 +5,9 @@ output "base_info" {
 
 module "terraform_base" {
   source          = "./compositions/base"
-  bucket_name     = "terraform-state-{{cookiecutter.__project_name}}-base"
-  key_path        = "base.tfstate"
-  table_name      = "terraform-{{cookiecutter.__project_name}}-locks"
+  bucket_name     = "{{ cookiecutter.__bucket_name}}"
+  key_path        = "states/base.tfstate"
+  table_name      = "{{ cookiecutter.__dynamo_table_name}}"
   admin_user_name = "{{ cookiecutter.admin_name}}"
   account_number  = "{{ cookiecutter.account_number}}"
 }
