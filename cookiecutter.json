@@ -7,6 +7,6 @@
   "AWS_REGION": "us-east-1",
   "app_git_repo": "Enter output git repo",
   "__project_name": "{{ cookiecutter.app_name|lower|replace(' ', '-') }}",
-  "__bucket_name": "terraform-{{cookiecutter.__project_name}}",
-  "__dynamo_table_name": "terraform-{{cookiecutter.__project_name}}-locks"
+  "__bucket_name": "terraform-{{ cookiecutter.account_number }}-{{ cookiecutter.__project_name }}",
+  "__dynamo_table_name": "terraform-{{ cookiecutter.__project_name }}-locks"
 }

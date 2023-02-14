@@ -1,24 +1,17 @@
-resource "aws_s3_bucket" "tf_state_s3" {
-  bucket = var.bucket_name
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
-resource "aws_s3_bucket_versioning" "tf_state_s3_versioning" {
-  bucket = aws_s3_bucket.tf_state_s3.id
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
-
-resource "aws_s3_bucket_server_side_encryption_configuration" "tf_state_s3_encryption" {
-  bucket = aws_s3_bucket.tf_state_s3.bucket
-
-  rule {
-    apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
-    }
+// Grants access to DynamoDb Table with locks
+data "aws_iam_policy_document" "tf_state_dynamodb" {
+  statement {
+    actions = [
+      "dynamodb:GetItem",
+      "dynamodb:PutItem",
+      "dynamodb:DeleteItem",
+      "dynamodb:DescribeTable",
+      "dynamodb:DescribeContinuousBackups",
+      "dynamodb:DescribeTimeToLive",
+      "dynamodb:ListTagsOfResource"
+    ]
+    resources = ["arn:aws:dynamodb:*:${var.account_number}:table/${var.table_name}"]
+    effect    = "Allow"
   }
 }
 
@@ -57,5 +50,20 @@ data "aws_iam_policy_document" "tf_state_s3" {
     ]
     resources = ["arn:aws:s3:::${var.bucket_name}"]
     effect    = "Allow"
+  }
+}
+
+//grants
+data "aws_iam_policy_document" "base_user" {
+  statement {
+    sid = "DefaultProfileAccess"
+    actions = [ "iam:*" ]
+    resources = [ 
+      "arn:aws:iam::${var.account_number}:user/*",
+      "arn:aws:iam::${var.account_number}:group/*",
+      "arn:aws:iam::aws:policy/*",
+      "arn:aws:iam::${var.account_number}:policy/*"
+    ]
+    effect = "Allow"
   }
 }
