@@ -7,8 +7,8 @@ on:
     branches: [ master ]
 
 env:
-  AWS_ACCESS_KEY_ID: {{ "${{"  }} secrets.AWS_ACCESS_KEY_ID {{ "}}" }}
-  AWS_SECRET_ACCESS_KEY: {{ "${{"  }} secrets.AWS_SECRET_ACCESS_KEY {{ "}}" }}
+  AWS_ACCESS_KEY_ID: {{ "${{" }} secrets.AWS_ACCESS_KEY_ID {{ "}}" }}
+  AWS_SECRET_ACCESS_KEY: {{ "${{" }} secrets.AWS_SECRET_ACCESS_KEY {{ "}}" }}
   AWS_REGION: {{ cookiecutter.AWS_REGION }}
 
 jobs:
@@ -44,6 +44,6 @@ jobs:
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN:  {{ "${{" }} secrets.GITHUB_TOKEN {{ "}}" }}
           DEFAULT_BUMP: patch
           WITH_V: false
