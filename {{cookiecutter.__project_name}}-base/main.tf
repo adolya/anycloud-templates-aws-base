@@ -18,6 +18,6 @@ module "github" {
   source          = "./modules/base/iam/github"
   table_name      = local.table_name
   bucket_name     = local.bucket_name
-  key_path        = "base/terraform.tfstate"
+  key_path        = "{{ cookiecutter.__state_location }}"
   account_number  = "{{ cookiecutter.account_number }}"
 }
