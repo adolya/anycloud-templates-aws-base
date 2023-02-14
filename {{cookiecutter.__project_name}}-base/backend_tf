@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
     region         = "{{ cookiecutter.AWS_REGION }}"
-    bucket         = "{{ cookiecutter.__bucket_name}}"
-    key            = "states/base.tfstate"
-    dynamodb_table = "{{ cookiecutter.__dynamo_table_name}}"
+    bucket         = "{{ cookiecutter.__bucket_name }}"
+    key            = "{{ cookiecutter.__state_location }}"
+    dynamodb_table = "{{ cookiecutter.__dynamo_table_name }}"
     encrypt        = true
   }
 }
