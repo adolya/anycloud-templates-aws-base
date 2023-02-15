@@ -5,9 +5,10 @@ module "utilities" {
 provider "aws" {
   default_tags {
     tags = merge({ 
-      CreatedDate = "{% now 'utc', '%Y-%m-%dT%H:%M:%SZ' %}" 
-      ProjectName = "{{cookiecutter.__project_name}}-base"
-      TerraformVersion = module.utilities.terraform_version 
+      created = "{% now 'utc', '%Y-%m-%dT%H:%M:%SZ' %}" 
+      project-name = "{{cookiecutter.__project_name}}-static-site"
+      terraform-version = module.utilities.terraform_version
+      cact-name = "base"
     })
   }
 }
